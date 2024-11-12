@@ -16,5 +16,5 @@ streamlit==1.22.0
 pymongo
 ipykernel
 nbformat>=4.2.0
-distutils
+distlib
 # -e .
