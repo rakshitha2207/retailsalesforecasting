@@ -1,0 +1,84 @@
+name: CI/CD Pipeline for Streamlit App with FRED Data
+
+on:
+  schedule:
+    - cron: '0 0 */15 * *'  # Runs every 15 days
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: streamlit-app
+  IMAGE_TAG: latest
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the Repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install Dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Step 4: Run Data Pipeline - FRED API to MongoDB
+      - name: Run FRED API to MongoDB pipeline
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          python fred_to_db.py
+
+      # Step 5: Run Data Pipeline - MongoDB to Artifacts (CSV)
+      - name: MongoDB to Artifacts (CSV)
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          python db_to_artifacts.py
+
+      # Step 6: Commit Artifacts
+      - name: Commit artifacts to GitHub
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add artifacts/
+          git diff-index --quiet HEAD || git commit -m "Update artifacts" --allow-empty --no-verify
+
+      # Step 7: Configure AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Step 8: Log in to Amazon ECR
+      - name: Log in to Amazon ECR
+        run: |
+          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com"
+
+      # Step 9: Build and Push Docker Image
+      - name: Build and tag Docker image
+        run: |
+          docker build -t "$ECR_REPOSITORY:$IMAGE_TAG" .
+          docker tag "$ECR_REPOSITORY:$IMAGE_TAG" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
+      
+      - name: Push Docker image to Amazon ECR
+        run: |
+          docker push "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      # Step 10: Deploy to AWS ECS (or Lambda)
+      - name: Deploy to ECS
+        run: |
+          # ECS deployment commands go here (or AWS Lambda deployment if preferred)

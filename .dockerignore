@@ -1,5 +1,5 @@
 #files
-noteooks/
+notebook/
 credentials.py
 .github/workflows/main.yml
 
