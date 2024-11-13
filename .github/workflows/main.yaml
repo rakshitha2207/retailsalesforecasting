@@ -9,7 +9,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: streamlit-app
+  ECR_REPOSITORY: retailsales_app
   IMAGE_TAG: latest
 
 jobs:
