@@ -9,8 +9,9 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: retailsales_app
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}  # Adjusted to use the repository name secret
   IMAGE_TAG: latest
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
 
 jobs:
   build-deploy:
@@ -63,22 +64,31 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Step 8: Log in to Amazon ECR
+      # Step 8: Ensure ECR Repository Exists
+      - name: Ensure ECR repository exists
+        run: |
+          aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" --region "$AWS_REGION" ||
+          aws ecr create-repository --repository-name "$ECR_REPOSITORY" --region "$AWS_REGION"
+
+      # Step 9: Log in to Amazon ECR
       - name: Log in to Amazon ECR
         run: |
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com"
+          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "${AWS_ACCOUNT_ID}.dkr.ecr.$AWS_REGION.amazonaws.com"
 
-      # Step 9: Build and Push Docker Image
+      # Step 10: Build and Push Docker Image
       - name: Build and tag Docker image
         run: |
           docker build -t "$ECR_REPOSITORY:$IMAGE_TAG" .
-          docker tag "$ECR_REPOSITORY:$IMAGE_TAG" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker tag "$ECR_REPOSITORY:$IMAGE_TAG" "${AWS_ACCOUNT_ID}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
       
       - name: Push Docker image to Amazon ECR
         run: |
-          docker push "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker push "${AWS_ACCOUNT_ID}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # Step 10: Deploy to AWS ECS (or Lambda)
+      # Step 11: Deploy to AWS ECS (or Lambda)
       - name: Deploy to ECS
         run: |
-          # ECS deployment commands go here (or AWS Lambda deployment if preferred)
+          # Placeholder for ECS deployment commands (or AWS Lambda deployment if preferred)
+          echo "Deploying to ECS..."
+          # Example ECS command:
+          # aws ecs update-service --cluster <cluster-name> --service <service-name> --force-new-deployment
