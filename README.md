@@ -1,5 +1,5 @@
 # Retail Sales Forecasting and Monitoring
-[![Made with Python](https://img.shields.io/badge/Made%20with-Python%203.10.7-blue.svg)](https://www.python.org/)
+[![Made with Python](https://img.shields.io/badge/Made%20with-Python%203.9.0-blue.svg)](https://www.python.org/)
 
 # Project Description
 The  Retail Sales Forecasting and Monitoring project is designed to provide real-time analysis and forecasting for the Retail Sales. The dataset used here is related to the US market and offers valuable insights into the sales performance of the retail trade sector, which encompasses a wide range of businesses in the retail industry.
