@@ -37,11 +37,11 @@ The choice of the Holt-Winters model, along with the consideration of confidence
 
 | Notebook | Colab Link |
 | -------- | ---------- |
-| Data Collection | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ashrafalaghbari/RetailSensei/blob/main/notebooks/data_collection.ipynb) |
-| Decomposition Forecasting | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ashrafalaghbari/RetailSensei/blob/main/notebooks/decomposition_forecasting.ipynb) |
-| Holt-Winters Model | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ashrafalaghbari/RetailSensei/blob/main/notebooks/holt_winters_model.ipynb) |
-| Linear Regression with Seasoanl Dummies | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ashrafalaghbari/RetailSensei/blob/main/notebooks/lr_with_seasoanl_dummies.ipynb) |
-| SARIMA| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ashrafalaghbari/RetailSensei/blob/main/notebooks/sarimax.ipynb) |
+| Data Collection | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1fROcpZnVFW5KSqieL2zdPdw29HqtuhuA?usp=sharing) |
+| Decomposition Forecasting | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_5UteZylHMvbnxQ26VrPc258wk90r-HJ?usp=sharing) |
+| Holt-Winters Model | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1RNxNOKsNn4NmPieB5p4FBJIdX_9pqxW5?usp=sharing) |
+| Linear Regression with Seasoanl Dummies | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FJLdOawg7x1I7c4eIrZHtKHlAyHcrOAk?usp=sharing) |
+| SARIMA| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ZG1I5OOyeQT-XQ4lCMwXONXvBFSoNW0D?usp=sharing) |
 
 # Worflow
 ![sales](workflow.png)
