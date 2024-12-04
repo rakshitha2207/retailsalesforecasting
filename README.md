@@ -59,7 +59,7 @@ env\Scripts\activate.bat
 ```
 
 ```bash
-git clone https://github.com/ashrafalaghbari/RetailSensei.git
+git clone https://github.com/rakshitha2207/retailsalesforecasting.git
 cd <project-directory>
 pip install -r requirements.txt
 streamlit run app.py
@@ -75,17 +75,17 @@ http://localhost:8501
 
 Pull the Docker image from Docker Hub:
 ```bash
-docker pull salesapp:0.1
+docker pull rakshitha919/retailsales_app:latest
 ```
 Run the Docker container:
 ```bash
-docker run -p 8501:8501 salesapp:0.1
+docker run -p 8501:8501 retailsales_app:latest
 ```
 Access the web application using the same URL as mentioned above. -->
 
 # Usage
 
-The interactive dashboard provides forecasted values for the next 24 months, from May 2023 to April 2025. It automatically retrieves new sales observations from FRED using the FRED API and displays them on the dashboard. The stars marker represents the actual values on the dashboard.
+The interactive dashboard provides forecasted values for the next 24 months, from November 2024 to September 2025. It automatically retrieves new sales observations from FRED using the FRED API and displays them on the dashboard. The stars marker represents the actual values on the dashboard.
 
 When a new sales observation is obtained, it is evaluated against the forecasted values to assess the performance of the model. The evaluation metrics used are MAPE (Mean Absolute Percentage Error), RMSE (Root Mean Squared Error), and MAE (Mean Absolute Error). These metrics provide insights into the model's performance and help identify outliers or the need for model retraining to adapt to changing market behavior.
 
@@ -99,9 +99,7 @@ By monitoring the performance metrics, users can track the model's reliability a
 
 # License
 
-[MIT](https://github.com/ashrafalaghbari/RetailSensei/blob/main/LICENSE)
+[GPL-3.0 license](LICENSE)
 
 
-# Contact
 
-If you have any questions or encounter any issues running this project, please feel free to [open an issue](https://github.com/ashrafalaghbari/RetailSensei/issues). I'll be happy to help!
