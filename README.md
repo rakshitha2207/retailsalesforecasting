@@ -13,9 +13,9 @@ The  Retail Sales Forecasting and Monitoring project is designed to provide real
 
 # Data Collection and Model Development
 
-The dataset used in this project was collected from the [Federal Reserve Economic Data (FRED) platform](https://fred.stlouisfed.org/series/RSXFSN). The data is spans from January 1992 to April 2023 and represents the Advance Retail Sales in the retail trade sector. 
+The dataset used in this project was collected from the [Federal Reserve Economic Data (FRED) platform](https://fred.stlouisfed.org/series/RSXFSN). The data is spans from January 1992 to September 2024 and represents the Advance Retail Sales in the retail trade sector. 
 
-The collected data is used training and evaluating the forecasting models. The forecast was then generated for a two-year period from May 2023 to April 2025. 
+The collected data is used training and evaluating the forecasting models. The forecast was then generated for a two-year period from November 2024 to September 2025. 
 
 The dataset exhibits both trend and seasonality, requiring the use of appropriate forecasting models. Several models were considered, including:
 
