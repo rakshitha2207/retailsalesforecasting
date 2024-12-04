@@ -38,6 +38,8 @@ The **Holt-Winters Model** was chosen for its:
 
 Including confidence intervals ensures reliable, actionable insights for effective planning and strategic decision-making.
 
+![saless](output.png)
+
 # Features  
 - **Confidence Intervals**: Indicate prediction reliability and uncertainty, aiding proactive decision-making.  
 - **Automated Updates**: Real-time data retrieval from FRED API for continuous monitoring.  
