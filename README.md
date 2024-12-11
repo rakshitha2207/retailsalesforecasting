@@ -107,6 +107,11 @@ If the new sales observation negatively impacts the model's performance, the per
 By monitoring the performance metrics, users can track the model's reliability and identify potential issues when new observations are added.
 
 
+## Live Demo
+
+You can access the live dashboard here:  
+[Retail Sales Forecasting Dashboard](https://retailsalesforecastin-es3btkbfqwyitnkdn5sbod.streamlit.app/)
+
 
 # License
 
