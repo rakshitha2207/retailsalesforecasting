@@ -686,7 +686,7 @@ st.write("\n")  # Add a line break after the table
 
 if __name__ == "__main__":
     # Make sure the app listens on all IP addresses
-    st.run(host='0.0.0.0', port=8501)
+    st.run(host='127.0.0.1', port=8501)
 
 
 
