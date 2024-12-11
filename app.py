@@ -683,7 +683,10 @@ styles = [{'selector': 'th', 'props': [('text-align', 'center')]},
 st.dataframe(table_forecast.style.set_table_styles(styles), use_container_width=True)  # Optional: Adjust width
 
 st.write("\n")  # Add a line break after the table
-st.run(host='0.0.0.0', port=8501)
+
+if __name__ == "__main__":
+    # Make sure the app listens on all IP addresses
+    st.run(host='0.0.0.0', port=8501)
 
 
 
