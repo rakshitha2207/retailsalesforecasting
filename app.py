@@ -684,9 +684,7 @@ st.dataframe(table_forecast.style.set_table_styles(styles), use_container_width=
 
 st.write("\n")  # Add a line break after the table
 
-if __name__ == "__main__":
-    # Make sure the app listens on all IP addresses
-    st.run(host='127.0.0.1', port=8501)
+
 
 
 
